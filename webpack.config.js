@@ -4,7 +4,10 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath:
+      argv.mode === "development"
+        ? "http://localhost:8080/"
+        : "https://container-microfrontend.apps.ocp4.pacosta.com/",
   },
 
   resolve: {
@@ -44,7 +47,10 @@ module.exports = (_, argv) => ({
       name: "container",
       filename: "remoteEntry.js",
       remotes: {
-        marketing: 'marketing@http://localhost:8081/remoteEntry.js',
+        marketing:
+          argv.mode === "development"
+            ? "marketing@http://localhost:8081/remoteEntry.js"
+            : "marketing@https://marketing-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
       },
       exposes: {},
       shared: {
