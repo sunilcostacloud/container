@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
-const Header = ({ signedIn, onSignOut }) => {
+const Header = ({ isSignedIn, onSignOut }) => {
     const theme = useTheme();
 
     const classes = {
@@ -54,7 +54,7 @@ const Header = ({ signedIn, onSignOut }) => {
     };
 
     const onClick = () => {
-        if (signedIn && onSignOut) {
+        if (isSignedIn && onSignOut) {
             onSignOut();
         }
     };
@@ -84,10 +84,10 @@ const Header = ({ signedIn, onSignOut }) => {
                         variant="outlined"
                         className={classes.link}
                         component={RouterLink}
-                        to={signedIn ? '/' : '/auth/signin'}
+                        to={isSignedIn ? '/' : '/auth/signin'}
                         onClick={onClick}
                     >
-                        {signedIn ? 'Logout' : 'Login'}
+                        {isSignedIn ? 'Logout' : 'Login'}
                     </Button>
                 </Toolbar>
             </AppBar>

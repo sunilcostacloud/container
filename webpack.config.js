@@ -51,6 +51,7 @@ module.exports = (_, argv) => ({
           argv.mode === "development"
             ? "marketing@http://localhost:8081/remoteEntry.js"
             : "marketing@https://marketing-microfrontend.apps.ocp4.pacosta.com/eoffice/remoteEntry.js",
+        auth: 'auth@http://localhost:8082/remoteEntry.js',
       },
       exposes: {},
       shared: {
