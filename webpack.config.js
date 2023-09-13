@@ -7,7 +7,7 @@ module.exports = (_, argv) => ({
     publicPath:
       argv.mode === "development"
         ? "http://localhost:8080/"
-        : "https://container-microfrontend.apps.ocp4.pacosta.com/eoffice/",
+        : "http://container-microfrontend.apps.ocp4.pacosta.com/eoffice/",
   },
 
   resolve: {
@@ -50,8 +50,11 @@ module.exports = (_, argv) => ({
         marketing:
           argv.mode === "development"
             ? "marketing@http://localhost:8081/remoteEntry.js"
-            : "marketing@https://marketing-microfrontend.apps.ocp4.pacosta.com/eoffice/remoteEntry.js",
-        auth: 'auth@http://localhost:8082/remoteEntry.js',
+            : "marketing@http://marketing-microfrontend.apps.ocp4.pacosta.com/eoffice/remoteEntry.js",
+        auth:
+          argv.mode === "development"
+            ? "auth@http://localhost:8082/remoteEntry.js"
+            : "auth@http://auth-microfrontend.apps.ocp4.pacosta.com/eoffice/remoteEntry.js",
       },
       exposes: {},
       shared: {
