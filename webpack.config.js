@@ -4,10 +4,10 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath:
-      argv.mode === "development"
-        ? "http://localhost:8080/"
-        : "http://container-microfrontend.apps.ocp4.pacosta.com/",
+    publicPath: "http://container-microfrontend.apps.ocp4.pacosta.com/"
+    // argv.mode === "development"
+    // ? "http://localhost:8080/"
+    // : "http://container-microfrontend.apps.ocp4.pacosta.com/",
   },
 
   resolve: {
@@ -59,18 +59,20 @@ module.exports = (_, argv) => ({
       name: "container",
       filename: "remoteEntry.js",
       remotes: {
-        marketing:
-          argv.mode === "development"
-            ? "marketing@http://localhost:8081/remoteEntry.js"
-            : "marketing@http://marketing-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
-        auth:
-          argv.mode === "development"
-            ? "auth@http://localhost:8082/remoteEntry.js"
-            : "auth@http://auth-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
-        dashboard:
-          argv.mode === "development"
-            ? "dashboard@http://localhost:8083/remoteEntry.js"
-            : "dashboard@http://dashboard-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+        marketing: "marketing@http://marketing-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+        // argv.mode === "development"
+        //   ? "marketing@http://localhost:8081/remoteEntry.js"
+        //   : "marketing@http://marketing-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+
+        auth: "auth@http://auth-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+        // argv.mode === "development"
+        //   ? "auth@http://localhost:8082/remoteEntry.js"
+        //   : "auth@http://auth-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+
+        dashboard: "dashboard@http://dashboard-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
+        // argv.mode === "development"
+        //   ? "dashboard@http://localhost:8083/remoteEntry.js"
+        //   : "dashboard@http://dashboard-microfrontend.apps.ocp4.pacosta.com/remoteEntry.js",
       },
       exposes: {},
       shared: {
